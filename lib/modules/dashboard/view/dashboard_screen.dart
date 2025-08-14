@@ -171,6 +171,10 @@ class DashboardScreen extends StatelessWidget {
   }
 
   Widget _coinsAnalyst() {
+    const totalCoins = 14325;
+    const redeemableCoins = 9216;
+    const expiredCoins = 6542;
+
     return Container(
       padding: const EdgeInsets.all(kSpace),
       decoration: BoxDecoration(
@@ -191,15 +195,17 @@ class DashboardScreen extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomText(
-                '14,325',
-                fontSize: 30.sp,
-                color: AppColors.whiteColor,
-                fontWeight: FontWeight.w700,
+              TweenAnimationBuilder<int>(
+                tween: IntTween(begin: 0, end: totalCoins),
+                duration: const Duration(seconds: 10),
+                builder: (context, value, child) => CustomText(
+                  value.toString(),
+                  fontSize: 30.sp,
+                  color: AppColors.whiteColor,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              SizedBox(
-                width: 8.w,
-              ),
+              SizedBox(width: 8.w),
               CustomImage(imageName: AppImages.coin)
             ],
           ),
@@ -213,55 +219,38 @@ class DashboardScreen extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    "Redeemable",
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w300,
-                    color: AppColors.whiteColor,
-                  ),
-                  Row(
-                    children: [
-                      const CustomText(
-                        "9216",
-                        color: AppColors.whiteColor,
-                      ),
-                      CustomImage(imageName: AppImages.coin)
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: kSpace,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    "Expired",
-                    color: AppColors.whiteColor,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  Row(
-                    children: [
-                      const CustomText(
-                        "6542",
-                        color: AppColors.whiteColor,
-                      ),
-                      CustomImage(imageName: AppImages.coin)
-                    ],
-                  ),
-                ],
-              )
+              _animatedCoinColumn("Redeemable", redeemableCoins),
+              const SizedBox(width: kSpace),
+              _animatedCoinColumn("Expired", expiredCoins),
             ],
           )
         ],
       ),
     );
   }
+
+  Widget _animatedCoinColumn(String title, int count) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomText(title,
+              fontSize: 10.sp,
+              fontWeight: FontWeight.w300,
+              color: AppColors.whiteColor),
+          Row(
+            children: [
+              TweenAnimationBuilder<int>(
+                tween: IntTween(begin: 0, end: count),
+                duration: const Duration(seconds: 10),
+                builder: (context, value, child) => CustomText(
+                  value.toString(),
+                  color: AppColors.whiteColor,
+                ),
+              ),
+              CustomImage(imageName: AppImages.coin)
+            ],
+          ),
+        ],
+      );
 
   Widget _qrScanner() {
     return Container(
