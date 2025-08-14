@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "114579535220",
+    "project_id": "webworksmachinetask",
+    "storage_bucket": "webworksmachinetask.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114579535220:android:635bf65b5bbff75e33e821",
+        "android_client_info": {
+          "package_name": "com.example.webwork_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQKCqZG74OPxSNFqQ0vqaao8jS7Z7uoso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
