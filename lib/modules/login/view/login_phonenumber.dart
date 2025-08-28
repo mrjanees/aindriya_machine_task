@@ -180,6 +180,7 @@ class LoginWithPhoneNumber extends StatelessWidget {
                           } else if (controller
                               .phoneNumberController.text.isEmpty) {
                             functionSnackBar("Please Enter Number!");
+                             functionSnackBar("Please Enter Number!");
                           } else {
                             functionSnackBar("Please enter a valid number!");
                           }
